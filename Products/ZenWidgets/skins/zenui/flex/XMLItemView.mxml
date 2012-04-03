@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" xmlns:local="*"
+    width="160"
+    height="110"
+	backgroundColor="0xffffff"
+	backgroundAlpha="0"
+    creationComplete="creationComplete()" >
+	
+	
+    <local:Outline id="outline" x="45" y="20"
+        filters="{calcFilters(app().roamer.currentItem, data as Item)}"/>	
+    <local:Circle id="circle" x="45" y="20"/>
+    <mx:Image id="img1" source="/zport/dmd/img/icons/{data.data.@icon}"
+        horizontalAlign="center"
+        verticalAlign="center"
+        x="60" y="31" height="40" width="40"/>
+    <mx:Text fontSize="9" fontWeight="bold" text="{data.data.@label}"
+        height="20" x="0" y="70" color="#000000"
+        width="160" selectable="false"
+        textAlign="center"/>
+    <mx:Text fontSize="9" fontWeight="bold" text="{data.data.@prop}"
+        height="20" x="0" y="80" color="#555555" 
+        width="160" selectable="false"
+        textAlign="center"/>	
+
+
+	<mx:Script>
+		<![CDATA[
+			import mx.effects.Glow;
+			import com.adobe.flex.extras.controls.springgraph.Graph;
+			import com.adobe.flex.extras.controls.springgraph.Item;
+			import mx.core.Application;
+            
+			private var created: Boolean = false;
+
+
+
+			public function doubleClick(event: Event): void {
+				app().itemDoubleClick(event);
+			}
+
+			private function app(): ZenNetMap {
+				return Application.application as ZenNetMap;
+			}
+
+            private function applyData(): void {
+                var color:int=data.data.@color;
+                circle.color = color;
+            }
+
+			private function creationComplete(): void {
+				created = true;
+				if(data != null)
+					applyData();
+			}
+			
+			private function calcFilters(currentItem: Item, item: Item): Array {
+				if(app().roamer.currentItem == item) {
+					return [new GlowFilter(0x2222FF, 1, 8, 8, 6, 1)];
+				} else {
+					return null;
+				}
+			}
+
+		]]>
+	</mx:Script>				
+</mx:Canvas>
+				

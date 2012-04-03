@@ -1,0 +1,3 @@
+#Taskname;NetRange;  Where to discover;             Success devclass;     Fail devclass;    Device location;
+TaskName1;x.y.z.0/24;/Discovered/Workstation/Domain1;/Workstation/Domain1;/#Unknown/Domain1;/Workstations/Location1/
+TaskName2;x.y.w.0/24;/Discovered/Workstation/Domain2;/Workstation/Domain2;/#Unknown/Domain2;/Workstations/Location1/
